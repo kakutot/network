@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Temp</string>
+    <string name="error_message_default">error occured</string>
+</resources>
