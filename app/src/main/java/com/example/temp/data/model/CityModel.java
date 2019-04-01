@@ -1,14 +1,18 @@
 package com.example.temp.data.model;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class CityModel{
 
     private final int id;
 
     private final String name;
 
+    @SerializedName("country_id")
     private final int countryId;
 
+    @SerializedName("country_name")
     private final String countryName;
 
     public CityModel(int id, String name, int countryId, String countryName) {

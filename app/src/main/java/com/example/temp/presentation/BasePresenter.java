@@ -13,18 +13,32 @@ public abstract class BasePresenter<V extends BaseContract.BaseView, R extends R
     private V view;
     private Router router;
 
-    public BasePresenter(CompositeDisposable compositeDisposable, V view, Router router) {
-        this.compositeDisposable = compositeDisposable;
+    public BasePresenter(V view, Router router) {
         this.view = view;
         this.router = router;
     }
 
     private void clearResources() {
-        compositeDisposable.clear();
+        if(compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
     }
 
     protected void addDisposable(Disposable disposable) {
-        compositeDisposable.add(disposable);
+        initAndGetCD().add(disposable);
+    }
+
+    protected void disposeAll() {
+        if(compositeDisposable != null) {
+            compositeDisposable.dispose();
+        }
+    }
+
+    private CompositeDisposable initAndGetCD() {
+        if(compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        return compositeDisposable;
     }
 
     @Override

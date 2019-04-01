@@ -1,7 +1,7 @@
 package com.example.temp.data.mapper;
 
-import com.example.tupkalenko.trainee.project.data.model.UserRatingModel;
-import com.example.tupkalenko.trainee.project.domain.entity.UserRating;
+import com.example.temp.data.model.UserRatingModel;
+import com.example.temp.domain.entity.UserRating;
 
 import java.util.LinkedList;
 import java.util.List;

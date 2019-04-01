@@ -1,10 +1,11 @@
 package com.example.temp.data.network;
 
-import com.example.temp.data.model.CollectionModel;
+import com.example.temp.data.model.CityResponse;
+import com.example.temp.data.model.CollectionsResponse;
 
-import java.util.List;
-
-import io.reactivex.Observable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -20,10 +21,14 @@ public interface ZomatoApi {
     String PARAM_LAT = "lat";
     String PARAM_COUNT = "count";
 
+    String CITIES = "cities";
+    String PARAM_QUERY = "q";
 
     @GET(COLLECTIONS)
-    Observable<List<CollectionModel>> getCollections (@Query(PARAM_CITY_ID) Integer cityId,
-                                                      @Query(PARAM_LON) Double lon,
-                                                      @Query(PARAM_LAT) Double lat,
-                                                      @Query(PARAM_COUNT) Integer count);
+    Single<CollectionsResponse> getCollections (@NonNull @Query(PARAM_CITY_ID) Integer cityId,
+                                                @Nullable @Query(PARAM_COUNT) Integer count);
+
+    @GET(CITIES)
+    Single<CityResponse> getCities(@Nullable @Query(PARAM_QUERY) String query, @Nullable @Query(PARAM_LON) Double lon,
+                                         @Nullable @Query(PARAM_LAT) Double lat, @Query(PARAM_COUNT) Integer count);
 }

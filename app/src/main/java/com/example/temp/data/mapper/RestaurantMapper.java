@@ -1,12 +1,19 @@
 package com.example.temp.data.mapper;
-
-import com.example.tupkalenko.trainee.project.data.model.RestaurantModel;
-import com.example.tupkalenko.trainee.project.domain.entity.Restaurant;
+import com.example.temp.data.model.RestaurantModel;
+import com.example.temp.domain.entity.Restaurant;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class RestaurantMapper implements EntityMapper<RestaurantModel, Restaurant> {
+
+    private LocationMapper locationMapper;
+    private UserRatingMapper userRatingMapper;
+
+    public RestaurantMapper(LocationMapper locationMapper, UserRatingMapper userRatingMapper) {
+        this.locationMapper = locationMapper;
+        this.userRatingMapper = userRatingMapper;
+    }
 
     @Override
     public Restaurant map(RestaurantModel restaurantModel) {
@@ -17,7 +24,8 @@ public class RestaurantMapper implements EntityMapper<RestaurantModel, Restauran
                 .setCurrency(restaurantModel.getCurrency())
                 .setAverageCostForTwo(restaurantModel.getAverageCostForTwo())
                 .setFeaturedImage(restaurantModel.getFeaturedImage())
-                .setLocation(restaurantModel.getLocation());
+                .setUserRating(userRatingMapper.map(restaurantModel.getUserRatingModel()))
+                .setLocation(locationMapper.map(restaurantModel.getLocation()));
 
         return builder.build();
     }
@@ -42,7 +50,9 @@ public class RestaurantMapper implements EntityMapper<RestaurantModel, Restauran
                 .setCurrency(restaurant.getCurrency())
                 .setFeaturedImage(restaurant.getFeaturedImage())
                 .setName(restaurant.getName())
-                .setAverageCostForTwo(restaurant.getAverageCostForTwo());
+                .setAverageCostForTwo(restaurant.getAverageCostForTwo())
+                .setUserRatingModel(userRatingMapper.mapBack(restaurant.getUserRating()))
+                .setLocation(locationMapper.mapBack(restaurant.getLocation()));
 
         return builder.build();
     }

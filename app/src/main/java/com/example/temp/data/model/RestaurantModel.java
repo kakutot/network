@@ -1,14 +1,12 @@
 package com.example.temp.data.model;
 
-import com.example.temp.domain.entity.Location;
-
 public class RestaurantModel {
 
     private final int id;
 
     private final String name;
 
-    private final Location location;
+    private final LocationModel location;
 
     private final double averageCostForTwo;
 
@@ -16,14 +14,17 @@ public class RestaurantModel {
 
     private final String featuredImage;
 
-    private RestaurantModel(int id, String name, Location location, double averageCostForTwo,
-                            String currency, String featuredImage) {
+    private final UserRatingModel userRatingModel;
+
+    private RestaurantModel(int id, String name, LocationModel location, double averageCostForTwo,
+                            String currency, String featuredImage, UserRatingModel userRatingModel) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.averageCostForTwo = averageCostForTwo;
         this.currency = currency;
         this.featuredImage = featuredImage;
+        this.userRatingModel = userRatingModel;
     }
 
     public int getId() {
@@ -34,7 +35,7 @@ public class RestaurantModel {
         return name;
     }
 
-    public Location getLocation() {
+    public LocationModel getLocation() {
         return location;
     }
 
@@ -50,13 +51,17 @@ public class RestaurantModel {
         return featuredImage;
     }
 
+    public UserRatingModel getUserRatingModel() {
+        return userRatingModel;
+    }
+
     public static class Builder {
 
         private int id;
 
         private String name;
 
-        private Location location;
+        private LocationModel location;
 
         private double averageCostForTwo;
 
@@ -64,9 +69,11 @@ public class RestaurantModel {
 
         private String featuredImage;
 
+        private UserRatingModel userRatingModel;
+
         public RestaurantModel build () {
             return new RestaurantModel(this.id, this.name, this.location,
-                    this.averageCostForTwo, this.currency, this.featuredImage);
+                    this.averageCostForTwo, this.currency, this.featuredImage, this.userRatingModel);
         }
 
         public Builder setId(int id) {
@@ -81,7 +88,7 @@ public class RestaurantModel {
             return this;
         }
 
-        public Builder setLocation(Location location) {
+        public Builder setLocation(LocationModel location) {
             this.location = location;
 
             return this;
@@ -101,6 +108,12 @@ public class RestaurantModel {
 
         public Builder setFeaturedImage(String featuredImage) {
             this.featuredImage = featuredImage;
+
+            return this;
+        }
+
+        public Builder setUserRatingModel(UserRatingModel userRatingModel) {
+            this.userRatingModel = userRatingModel;
 
             return this;
         }

@@ -1,6 +1,8 @@
 package com.example.temp.domain.entity;
 
-public final class Location implements Cloneable{
+import java.util.List;
+
+public final class Location {
 
     private final String address;
 
@@ -12,7 +14,8 @@ public final class Location implements Cloneable{
 
     private final double countryId;
 
-    private Location(String address, String city, double latitude, double longitude, double countryId) {
+    private Location(String address, String city, double latitude,
+                     double longitude, double countryId) {
         this.address = address;
         this.city = city;
         this.latitude = latitude;
@@ -40,7 +43,7 @@ public final class Location implements Cloneable{
         return countryId;
     }
 
-    public static class LocationBuilder {
+    public static class Builder {
         private String address;
 
         private String city;
@@ -51,35 +54,38 @@ public final class Location implements Cloneable{
 
         private double countryId;
 
+        private List<Restaurant> restaurants;
+
         public Location build () {
-            return new Location(this.address, this.city, this.latitude, this.longitude, this.countryId);
+            return new Location(this.address, this.city, this.latitude,
+                    this.longitude, this.countryId);
         }
 
-        public LocationBuilder setAddress(String address) {
+        public Builder setAddress(String address) {
             this.address = address;
 
             return this;
         }
 
-        public LocationBuilder setCity(String city) {
+        public Builder setCity(String city) {
             this.city = city;
 
             return this;
         }
 
-        public LocationBuilder setLatitude(double latitude) {
+        public Builder setLatitude(double latitude) {
             this.latitude = latitude;
 
             return this;
         }
 
-        public LocationBuilder setLongitude(double longitude) {
+        public Builder setLongitude(double longitude) {
             this.longitude = longitude;
 
             return this;
         }
 
-        public void setCountry_id(double countryId) {
+        public void setCountryId(double countryId) {
             this.countryId = countryId;
         }
     }

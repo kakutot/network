@@ -33,7 +33,7 @@ public final class UserRating {
         return votes;
     }
 
-    public static class UserRatingBuilder {
+    public static class Builder {
 
         private double aggrRating;
 
@@ -43,32 +43,29 @@ public final class UserRating {
 
         private int votes;
 
-        public UserRatingBuilder(double aggrRating, String ratingText, String ratingColor, int votes) {
-            this.aggrRating = aggrRating;
-            this.ratingText = ratingText;
-            this.ratingColor = ratingColor;
-            this.votes = votes;
+        public UserRating build () {
+            return new UserRating(this.aggrRating, this.ratingText, this.ratingColor, this.votes);
         }
 
-        public UserRatingBuilder setAggrRating(double aggrRating) {
+        public Builder setAggrRating(double aggrRating) {
             this.aggrRating = aggrRating;
 
             return this;
         }
 
-        public UserRatingBuilder setRatingText(String ratingText) {
+        public Builder setRatingText(String ratingText) {
             this.ratingText = ratingText;
 
             return this;
         }
 
-        public UserRatingBuilder setRatingColor(String ratingColor) {
+        public Builder setRatingColor(String ratingColor) {
             this.ratingColor = ratingColor;
 
             return this;
         }
 
-        public UserRatingBuilder setVotes(int votes) {
+        public Builder setVotes(int votes) {
             this.votes = votes;
 
             return this;

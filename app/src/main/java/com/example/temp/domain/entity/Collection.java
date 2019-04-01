@@ -75,4 +75,14 @@ public final class Collection {
             return this;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Collection{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", resCount=" + resCount +
+                '}';
+    }
 }

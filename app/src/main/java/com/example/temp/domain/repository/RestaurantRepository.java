@@ -6,19 +6,20 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
 
 public interface RestaurantRepository {
 
-    Observable<List<Restaurant>> getRestaurantsByCollectionId(@NonNull int collectionId);
+    Observable<List<Restaurant>> getRestaurantsByCollectionId(int collectionId, int start, int count);
 
-    Observable<List<Restaurant>> getRestaurantsByCollectionIdAsc(@NonNull int collectionId);
+    Observable<List<Restaurant>> getRestaurantsByCollectionIdAsc(int collectionId, int start, int count);
 
-    Observable<List<Restaurant>> getRestaurantsByCollectionIdDesc(@NonNull int collectionId);
+    Observable<List<Restaurant>> getRestaurantsByCollectionIdDesc(int collectionId, int start, int count);
 
-    Observable<Restaurant> getRestaurant(@NonNull int restaurantId);
+    Observable<Restaurant> getRestaurant(int restaurantId);
 
     Completable saveRestaurant(Restaurant restaurant);
 
     Completable saveRestaurant(int restaurantId);
+
+    Completable removeRestaurant(int restaurantId);
 }

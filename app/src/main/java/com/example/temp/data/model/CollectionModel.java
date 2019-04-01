@@ -1,15 +1,20 @@
 package com.example.temp.data.model;
 
 
-public final class CollectionModel {
+import com.google.gson.annotations.SerializedName;
 
+public class CollectionModel {
+
+    @SerializedName("collection_id")
     private final int id;
+
+    @SerializedName("res_count")
+    private final int resCount;
 
     private final String title;
 
+    @SerializedName("image_url")
     private final String imageUrl;
-
-    private final int resCount;
 
     public CollectionModel(int id, String title, String imageUrl, int resCount) {
         this.id = id;

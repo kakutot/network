@@ -9,6 +9,7 @@ import com.example.temp.domain.repository.CollectionRepository;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class CollectionRepositoryImpl implements CollectionRepository {
 
@@ -17,34 +18,14 @@ public class CollectionRepositoryImpl implements CollectionRepository {
 
     public CollectionRepositoryImpl(CollectionDataSource networkDataSource, EntityMapper<CollectionModel, Collection> entityMapper ) {
         this.networkDataSource = networkDataSource;
+        this.entityMapper = entityMapper;
     }
 
-    @Override
-    public Observable<List<Collection>> getCollectionsByCityId(int cityId) {
-        return networkDataSource
-                .getCollectionsByCityId(Integer.valueOf(cityId))
-                .map(entityMapper::mapMany);
-    }
 
     @Override
-    public Observable<List<Collection>> getCollectionsByCityId(int cityId, int count) {
+    public Single<List<Collection>> getCollectionsByCityId(int cityId, int count) {
         return networkDataSource
                 .getCollectionsByCityId(cityId, count)
                 .map(entityMapper::mapMany);
     }
-
-    @Override
-    public Observable<List<Collection>> getCollectionsByCityId(int cityId, double lat, double lon) {
-        return networkDataSource
-                .getCollectionsByCityId(cityId, lat, lon)
-                .map(entityMapper::mapMany);
-    }
-
-    @Override
-    public Observable<List<Collection>> getCollectionsByCityId(int cityId, double lon, double lat, int count) {
-        return networkDataSource
-                .getCollectionsByCityId(cityId, lat, lon, count)
-                .map(entityMapper::mapMany);
-    }
-
 }

@@ -1,16 +1,19 @@
 package com.example.temp.presentation;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.temp.domain.navigation.Router;
+
 public abstract class BaseActivity extends AppCompatActivity {
+
+    private Router router;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initViews();
         injectDependencies();
     }
 
@@ -23,6 +26,4 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract void injectDependencies();
-
-    protected abstract void initViews();
 }

@@ -74,4 +74,14 @@ public final class City {
             return this;
         }
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", countryId=" + countryId +
+                ", countryName='" + countryName + '\'' +
+                '}';
+    }
 }

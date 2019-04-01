@@ -1,6 +1,6 @@
 package com.example.temp.domain.navigation;
 
-public interface RestaurantsScreenRouter extends Router{
+public interface RestaurantsRouter extends Router{
 
     void routeToRestaurantsDetails(int restaurantId);
 }

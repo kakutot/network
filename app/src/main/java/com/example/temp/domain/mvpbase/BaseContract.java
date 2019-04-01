@@ -11,6 +11,9 @@ public interface BaseContract {
         boolean isActive();
 
         P getPresenter();
+
+        //TODO delete
+        void setPresenter(P presenter);
     }
 
     interface BasePresenter<V extends BaseView> {
@@ -26,5 +29,7 @@ public interface BaseContract {
         void onError(Throwable throwable);
 
         Router getRouter();
+
+        void navigateBack();
     }
 }
